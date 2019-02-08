@@ -93,7 +93,7 @@ function write_author_profile() {
 			<?php echo get_avatar( get_the_author_meta( 'ID' ), 75 ); ?>
 		</div><!-- .author-profile-avatar -->
 		<div class="author-profile-meta">
-			<div class="author-profile-name"><strong><a class="author-profile-description-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author"><?php the_author() ?></a></strong></div>
+			<div class="author-profile-name"><strong><a class="author-profile-description-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author"><?php the_author() ?></a></strong> - <?php write_entry_meta();?></div>
 		</div><!-- .author-profile-meta -->
 		<div class="author-profile-description">
 			<?php the_author_meta( 'description' ); ?>
@@ -120,8 +120,8 @@ function write_post_nav() {
 		<h2 class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'write' ); ?></h2>
 		<div class="nav-links">
 			<?php
-				previous_post_link( '<div class="nav-previous"><div class="post-nav-title">' . esc_html__( 'Older post', 'write' ) . '</div>%link</div>', esc_html_x( '%title', 'Previous post link', 'write' ) );
-				next_post_link( '<div class="nav-next"><div class="post-nav-title">' . esc_html__( 'Newer post', 'write' ) . '</div>%link</div>', esc_html_x( '%title', 'Next post link', 'write' ) );
+				previous_post_link( '<div class="nav-previous"><div class="post-nav-title"><span class="dashicons dashicons-arrow-left-alt2"></span>' . esc_html__( ' Older post', 'write' ) . '</div>%link</div>', esc_html_x( '%title', 'Previous post link', 'write' ) );
+				next_post_link( '<div class="nav-next"><div class="post-nav-title">' . esc_html__( 'Newer post ', 'write' ) . '<span class="dashicons dashicons-arrow-right-alt2"></span></div>%link</div>', esc_html_x( '%title', 'Next post link', 'write' ) );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .post-navigation -->

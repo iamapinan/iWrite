@@ -37,7 +37,7 @@ get_header(); ?>
 		</header><!-- .archive-header -->
 
 		<?php /* Start the Loop */ ?>
-		<div class="row justify-content-between mt-5">
+		<div class="row mt-5">
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php get_template_part( 'content', get_post_format() ); ?>
 			<?php endwhile; ?>

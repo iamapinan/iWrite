@@ -39,7 +39,7 @@
 
 	</footer><!-- #colophon -->
 </div><!-- #page -->
-
+<div class="position-fixed px-3 py-2 gotoTop rounded"><span class="dashicons dashicons-arrow-up-alt2"></span></div>
 <?php wp_footer(); ?>
 
 </body>

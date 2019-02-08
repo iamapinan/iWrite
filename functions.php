@@ -231,9 +231,8 @@ endif;
 function write_scripts() {
 	wp_enqueue_style( 'write-font', esc_url( write_fonts_url() ), array(), null );
 	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.4.1' );
-	wp_enqueue_style( 'normalize', get_template_directory_uri() . '/css/normalize.css',  array(), '8.0.0' );
+	// wp_enqueue_style( 'normalize', get_template_directory_uri() . '/css/normalize.css',  array(), '8.0.0' );
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css',  array(), '4.2' );
-	// wp_enqueue_style( 'fontawesome', get_template_directory_uri() . '/css/fontawesome.min.css',  array(), '5.7.1' );
 	wp_enqueue_style( 'write-style', get_stylesheet_uri(), array(), '2.1.1' );
 	if ( 'ja' == get_bloginfo( 'language' ) ) {
 		wp_enqueue_style( 'write-style-ja', get_template_directory_uri() . '/css/ja.css', array(), null );
