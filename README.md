@@ -1,4 +1,5 @@
-# iWrite
+![](images/iWrite-icon-mini.png)   
+# iWrite  
 iWrite wordpress theme is the simple and easy to customize to your needs.
 
 ### What's inside.
