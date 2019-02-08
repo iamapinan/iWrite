@@ -181,6 +181,12 @@ dd {
 	margin: 0 0 1.5em 1.5em;
 }
 
+/* 404 */
+.page-not-found-image{
+	max-width: 360px;
+	margin-bottom: 30px;
+}
+
 /* Table */
 table {
 	border-collapse: collapse;
@@ -495,6 +501,7 @@ body {
 }
 .page-header {
 	margin-bottom: 60px;
+	margin-top: 70px;
 }
 .hentry {
 	margin-bottom: 60px;
