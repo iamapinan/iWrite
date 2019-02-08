@@ -12,6 +12,7 @@
 		<?php if( !is_front_page() ) : ?>
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 		<?php endif; ?>
+		<?php do_action('after_header'); ?>
 	</header><!-- .entry-header -->
 	<?php endif; ?>
 

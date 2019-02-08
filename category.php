@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-<section id="primary" class="site-main">
+<section id="primary">
 	<main id="main" class="site-main site-category">
 
 	<?php if ( have_posts() ) : ?>
@@ -37,7 +37,6 @@ get_header(); ?>
 			<?php endif; ?>
 		</header><!-- .archive-header -->
 
-		<?php /* Start the Loop */ ?>
 		<div class="row mt-5">
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php get_template_part( 'content', get_post_format() ); ?>

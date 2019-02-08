@@ -17,7 +17,7 @@
 			<div class="site-bottom">
 				<div class="site-bottom-table">
 					<div class="footer-copyright">
-						<p>&copy; <?php echo get_bloginfo('name');?></p> 
+						<?php get_template_part('parts/footer', 'credit'); ?>
 					</div>
 					<nav id="footer-link" class="footer-link">
 						<!-- Link -->
