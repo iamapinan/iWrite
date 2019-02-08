@@ -13,7 +13,6 @@ if ( ! function_exists( 'iWrite_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-require_once dirname( __FILE__ ) . '/inc/class-tgm-plugin-activation.php';
 
 function iWrite_setup() {
 	
@@ -95,24 +94,9 @@ function iWrite_setup() {
 	add_theme_support( 'editor-styles' );
 	add_editor_style( array( 'css/editor-style.css' ) );
 
-	/*
-	 * Array of plugin arrays. Required keys are name and slug.
-	 * If the source is NOT from the .org repo, then source is also required.
-	 */
-	$plugins = array(
-		array(
-			'name'               => 'Categories Images', // The plugin name.
-			'slug'               => 'categories-images', // The plugin slug (typically the folder name).
-			'source'             => get_stylesheet_directory() . '/plugins/categories-images.2.5.4.zip', // The plugin source.
-		),
-		array(
-			'name'               => 'Contact Form 7', // The plugin name.
-			'slug'               => 'contact-form-7', // The plugin slug (typically the folder name).
-			'source'             => get_stylesheet_directory() . '/plugins/contact-form-7.5.1.1.zip', // The plugin source.
-		),
-	);
+	// Load plugin requirements
+	require get_template_directory() . '/inc/plugin-requirement.php';
 
-	tgmpa( $plugins, $config );
 }
 endif; // iWrite_setup
 add_action( 'after_setup_theme', 'iWrite_setup' );
@@ -252,7 +236,6 @@ endif;
 function write_scripts() {
 	wp_enqueue_style( 'write-font', esc_url( write_fonts_url() ), array(), null );
 	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.4.1' );
-	// wp_enqueue_style( 'normalize', get_template_directory_uri() . '/css/normalize.css',  array(), '8.0.0' );
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css',  array(), '4.2' );
 	wp_enqueue_style( 'write-style', get_stylesheet_uri(), array(), '2.1.1' );
 	if ( 'ja' == get_bloginfo( 'language' ) ) {
@@ -350,6 +333,7 @@ function iwrite_add_meta_box() {
 }
 add_action( 'add_meta_boxes', 'iwrite_add_meta_box' );
 
+
 /**
  * Prints the box content.
  * 
@@ -415,7 +399,6 @@ function write_save_meta_box_data( $post_id ) {
 	update_post_meta( $post_id, 'write_hide_page_title', $my_data );
 }
 add_action( 'save_post', 'write_save_meta_box_data' );
-
 /**
  * Custom template tags for this theme.
  */
@@ -440,3 +423,7 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+/**
+ * Load template functions.
+ */
+require get_template_directory() . '/inc/template-functions.php';

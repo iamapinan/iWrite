@@ -1,7 +1,6 @@
 <?php
 /**
  * The template for displaying archive pages.
- * Template Name: Archives
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package Write
