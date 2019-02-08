@@ -9,13 +9,16 @@
 	$(document).scroll(function() {
 		var y = $(this).scrollTop();
 		if (y > 800) {
-			$('.gotoTop').css('opacity', 1);
-			$('.gotoTop').click(function() {
-				scrollTo(0,0)
-			})
+			$('.gotoTop').fadeIn();
 		} else {
-			$('.gotoTop').css('opacity', 0);
+			$('.gotoTop').fadeOut();
 		}
+	});
+
+	$('.gotoTop').click(function(e) {
+		e.preventDefault();
+		$('html, body').animate({ scrollTop: 0 }, 500, 'linear');
+		return false;
 	});
 
 	// Set Double Tap To Go for Main Navigation.
