@@ -18,8 +18,9 @@ get_header(); ?>
 	
 			<!-- category featured image -->
 			<?php
-				if (z_taxonomy_image_url() != null) {
-					?>
+				
+				if (function_exists('z_taxonomy_image_url') && @z_taxonomy_image_url() != null) {
+			?>
 					<img src="<?php echo z_taxonomy_image_url(); ?>">
 					<h1 class="archive-title"><?php echo '<span>' . single_cat_title( '', false ) . '</span>'; ?></h1>
 			<?php
