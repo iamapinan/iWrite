@@ -31,6 +31,16 @@ function write_customize_register( $wp_customize ) {
 		'type' => 'checkbox',
 		'priority' => 1,
 	) );
+	$wp_customize->add_setting( 'iwrite_show_search', array(
+		'default'           => 1,
+		'sanitize_callback' => 'iwrite_sanitize_checkbox',
+	) );
+	$wp_customize->add_control(  'iwrite_show_search', array(
+		'section'  => 'iWriteOption',
+		'label'    => __( 'Display search box', 'iwrite' ),
+		'type' => 'checkbox',
+		'priority' => 1,
+	) );
 
 
 	// Colors
