@@ -13,8 +13,10 @@ if ( ! function_exists( 'iWrite_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function iWrite_setup() {
+require_once dirname( __FILE__ ) . '/inc/class-tgm-plugin-activation.php';
 
+function iWrite_setup() {
+	
 	/**
 	 * Set the content width based on the theme's design and stylesheet.
 	 */
@@ -92,6 +94,25 @@ function iWrite_setup() {
 	// This theme styles the visual editor to resemble the theme style.
 	add_theme_support( 'editor-styles' );
 	add_editor_style( array( 'css/editor-style.css' ) );
+
+	/*
+	 * Array of plugin arrays. Required keys are name and slug.
+	 * If the source is NOT from the .org repo, then source is also required.
+	 */
+	$plugins = array(
+		array(
+			'name'               => 'Categories Images', // The plugin name.
+			'slug'               => 'categories-images', // The plugin slug (typically the folder name).
+			'source'             => get_stylesheet_directory() . '/plugins/categories-images.2.5.4.zip', // The plugin source.
+		),
+		array(
+			'name'               => 'Contact Form 7', // The plugin name.
+			'slug'               => 'contact-form-7', // The plugin slug (typically the folder name).
+			'source'             => get_stylesheet_directory() . '/plugins/contact-form-7.5.1.1.zip', // The plugin source.
+		),
+	);
+
+	tgmpa( $plugins, $config );
 }
 endif; // iWrite_setup
 add_action( 'after_setup_theme', 'iWrite_setup' );
@@ -394,13 +415,6 @@ function write_save_meta_box_data( $post_id ) {
 	update_post_meta( $post_id, 'write_hide_page_title', $my_data );
 }
 add_action( 'save_post', 'write_save_meta_box_data' );
-
-add_action( 'admin_notices', 'notices_plugin_requirement' );
-
-function notices_plugin_requirement() {
-  if( ! function_exists('z_init') )
-    echo '<div class="error"><p>' . __( 'Warning: The theme needs Plugin <a href="/wp-admin/plugin-install.php?s=Categories+Images&tab=search&type=term">Categories Images</a> to function', 'iWrite' ) . '</p></div>';
-}
 
 /**
  * Custom template tags for this theme.
