@@ -8,7 +8,7 @@
 get_header(); ?>
 
 <section id="primary">
-	<main id="main" class="site-main">
+	<main id="main" class="site-main site-category">
 
 	<?php if ( have_posts() ) : ?>
 
@@ -16,7 +16,7 @@ get_header(); ?>
 			<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'write' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 		</header><!-- .page-header -->
 
-		<?php /* Start the Loop */ ?>
+		<div class="row mt-5">
 		<?php while ( have_posts() ) : the_post(); ?>
 
 			<?php get_template_part( 'content', get_post_format() ); ?>
@@ -29,6 +29,7 @@ get_header(); ?>
 			'next_text' => esc_html__( 'Next &raquo;', 'write' ),
 		) );
 		?>
+		</div>
 
 	<?php else : ?>
 

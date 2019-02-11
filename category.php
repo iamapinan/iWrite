@@ -11,7 +11,6 @@ get_header(); ?>
 
 <section id="primary">
 	<main id="main" class="site-main site-category">
-
 	<?php if ( have_posts() ) : ?>
 		<header class="archive-header">
 	
