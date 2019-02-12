@@ -30,4 +30,4 @@ function iwrite_after_footer_left() {
 	echo '<h2>'.get_bloginfo('name').'</h2>';
 	echo '<p>'.get_bloginfo('description').'</p>';
 }
-add_action( 'after_footer_left', 'iwrite_after_footer_left' );
+add_action( 'after_footer_left', 'iwrite_after_footer_left', 0 );
