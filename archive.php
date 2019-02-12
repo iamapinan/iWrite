@@ -26,15 +26,16 @@ get_header(); ?>
 				<div class="col">
 					<div class="row">
 						<div class="col">
-						<?php 
-							the_archive_title( '<h2 class="iwrite-category-title mt-2 mt-md-0">', '</h2>' ); 
+						<?php // the_archive_title();
+							single_tag_title( '<h2 class="iwrite-category-title mt-2 mt-md-0">', '</h2>' ); 
 						?>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<input class="form-control" list="issues" name="issue" placeholder="ค้าหา Issue" oninput="checkIssue(this.value)">
 								<datalist id="issues">
-									<?php $tags = get_tags();
+									<?php 
+										$tags = get_tags(['order' => DESC]);
 										foreach ( $tags as $tag ) :
 									?>
 										<option value="<?php echo $tag->slug; ?>" onclick="alert('click')"><?php echo $tag->count; ?></option>
