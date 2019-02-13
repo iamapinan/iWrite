@@ -118,9 +118,9 @@ add_action( 'template_redirect', 'write_content_width' );
  *
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
-function write_widgets_init() {
+function iwrite_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer Left', 'write' ),
+		'name'          => esc_html__( 'Footer 1', 'write' ),
 		'id'            => 'footer-1',
 		'description'   => __( 'Footer Left widget area is displayed on the left side of the footer. If you do not use the area, nothing will be displayed.', 'write' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -129,7 +129,7 @@ function write_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer Right 1', 'write' ),
+		'name'          => esc_html__( 'Footer 2', 'write' ),
 		'id'            => 'footer-2',
 		'description'   => __( '3 Footer Right widget areas are displayed on the right side of the footer, and the width is auto-adjusted based on how many you use. If you do not use the area, nothing will be displayed.', 'write' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -138,7 +138,7 @@ function write_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer Right 2', 'write' ),
+		'name'          => esc_html__( 'Footer 3', 'write' ),
 		'id'            => 'footer-3',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
@@ -146,7 +146,7 @@ function write_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer Right 3', 'write' ),
+		'name'          => esc_html__( 'Footer 4', 'write' ),
 		'id'            => 'footer-4',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
@@ -154,87 +154,14 @@ function write_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 }
-add_action( 'widgets_init', 'write_widgets_init' );
+add_action( 'widgets_init', 'iwrite_widgets_init' );
 
-if ( ! function_exists( 'write_fonts_url' ) ) :
-/**
- * Register Google Fonts.
- *
- * This function is based on code from Twenty Fifteen.
- * https://wordpress.org/themes/twentyfifteen/
- */
-function write_fonts_url() {
-	$fonts_url = '';
-	$fonts     = array();
-	$subsets   = 'latin,latin-ext';
-
-	/*
-	 * Translators: If there are characters in your language that are not supported
-	 * by Gentium Basic, translate this to 'off'. Do not translate into your own language.
-	 */
-	$gentium_basic = _x( 'on', 'Gentium Basic font: on or off', 'write' );
-	/*
-	 * Translators: If there are characters in your language that are not supported
-	 * by Gentium Book Basic, translate this to 'off'. Do not translate into your own language.
-	 */
-	$gentium_book_basic = _x( 'on', 'Gentium Book Basic font: on or off', 'write' );
-	/*
-	 * Translators: If there are characters in your language that are not supported
-	 * by Slabo 27px, translate this to 'off'. Do not translate into your own language.
-	 */
-	$slabo_27px = _x( 'on', 'Slabo 27px font: on or off', 'write' );
-	/*
-	 * Translators: To add an additional character subset specific to your language,
-	 * translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language.
-	 */
-	$subset = esc_html_x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'write' );
-
-	$title_font     = get_theme_mod( 'write_title_font' );
-	$headings_font  = get_theme_mod( 'write_headings_font' );
-	$body_font      = get_theme_mod( 'write_body_font' );
-	$home_text_font = get_theme_mod( 'write_home_text_font' );
-	$custom_fonts   = get_theme_mod( 'write_custom_google_fonts' );
-
-	if ( 'off' !== $gentium_basic ) {
-		$fonts[] = 'Gentium Basic:700';
-	}
-	if ( 'off' !== $gentium_book_basic ) {
-		$fonts[] = 'Gentium Book Basic:400,400italic,700';
-	}
-	if ( 'off' !== $slabo_27px ) {
-		$fonts[] = 'Slabo 27px:400';
-	}
-
-	if ( $home_text_font && get_theme_mod( 'write_home_text' ) ) {
-		$fonts[] = $home_text_font;
-	}
-
-	if ( 'cyrillic' == $subset ) {
-		$subsets .= ',cyrillic,cyrillic-ext';
-	} elseif ( 'greek' == $subset ) {
-		$subsets .= ',greek,greek-ext';
-	} elseif ( 'devanagari' == $subset ) {
-		$subsets .= ',devanagari';
-	} elseif ( 'vietnamese' == $subset ) {
-		$subsets .= ',vietnamese';
-	}
-
-	if ( $fonts ) {
-		$fonts_url = add_query_arg( array(
-			'family' => urlencode( implode( '|', $fonts ) ),
-			'subset' => urlencode( $subsets ),
-		), 'https://fonts.googleapis.com/css' );
-	}
-
-	return $fonts_url;
-}
-endif;
 
 /**
  * Enqueue scripts and styles.
  */
 function write_scripts() {
-	wp_enqueue_style( 'write-font', esc_url( write_fonts_url() ), array(), null );
+	wp_enqueue_style( 'google_fonts', 'https://fonts.googleapis.com/css?family='.trim(wp_kses_post(get_theme_mod('iwrite_google_font'))), false );
 	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.4.1' );
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css',  array(), '4.2' );
 	wp_enqueue_style( 'write-style', get_stylesheet_uri(), array(), '2.1.1' );
@@ -280,6 +207,53 @@ function iwrite_customizer_css() {
 }
 add_action( 'wp_head', 'iwrite_customizer_css' );
 
+/**
+* Google Analytic
+*/
+function iwrite_add_ga() {
+	if( get_theme_mod('iwrite_google_ga') != '' ):
+	?>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo trim(wp_kses_post(get_theme_mod('iwrite_google_ga')));?>"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', '<?php echo trim(wp_kses_post(get_theme_mod('iwrite_google_ga')));?>');
+	</script>
+	<?php
+	endif;
+}
+add_action( 'wp_head', 'iwrite_add_ga' );
+
+/**
+* Set Google font family
+*/
+function iwrite_change_font() {
+	if( get_theme_mod('iwrite_google_font') != '' ):
+	?>
+		<style>
+			#iwrite_page p, 
+			#iwrite_page h1, 
+			#iwrite_page h2, 
+			#iwrite_page h3, 
+			#iwrite_page h4, 
+			#iwrite_page h5, 
+			#iwrite_page h6, 
+			#iwrite_page a,
+			#iwrite_page input,
+			#iwrite_page select,
+			#iwrite_page textarea,
+			#iwrite_page button,
+			#iwrite_page label {
+				font-family: '<?php echo wp_kses_post(get_theme_mod('iwrite_google_font'));?>', sans-serif !important;
+			}
+		</style>
+	<?php
+	endif;
+}
+add_action( 'wp_head', 'iwrite_change_font' );
 /**
  * Add custom classes to the body.
  */

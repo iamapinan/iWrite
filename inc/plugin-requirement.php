@@ -17,11 +17,6 @@ $plugins = array(
         'slug'               => 'categories-images', // The plugin slug (typically the folder name).
         'source'             => get_stylesheet_directory() . '/plugins/categories-images.2.5.4.zip', // The plugin source.
     ),
-    array(
-        'name'               => 'Contact Form 7', // The plugin name.
-        'slug'               => 'contact-form-7', // The plugin slug (typically the folder name).
-        'source'             => get_stylesheet_directory() . '/plugins/contact-form-7.5.1.1.zip', // The plugin source.
-    ),
 );
 
 tgmpa( $plugins, $config );
