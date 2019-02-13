@@ -18,6 +18,7 @@ get_header(); ?>
 				the_archive_title( '<h1 class="iwrite-category-title mt-5">', '</h1>' );
 				the_archive_description( '<div class="taxonomy-description">', '</div>' );
 			?>
+
 		</header><!-- .page-header -->
 
 		<div class="row mt-5">
