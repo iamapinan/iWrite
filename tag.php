@@ -27,27 +27,35 @@ get_header(); ?>
 					<div class="row">
 						<div class="col">
 						<?php // the_archive_title();
-							single_tag_title( '<h2 class="iwrite-category-title mt-2 mt-md-0">', '</h2>' ); 
+							single_tag_title( '<h2 class="iwrite-category-title text-uppercase mt-2 mt-md-0">', '</h2>' ); 
 						?>
 						</div>
 						<div class="col-md-4">
-							<div class="form-group">
-								<input class="form-control" list="issues" name="issue" placeholder="issue" oninput="checkIssue(this.value)">
+							
+							<div class="text-center" style="display:none;" id="issue-loading">
+								<div class="spinner-border text-info" role="status">
+									<span class="sr-only">Loading...</span>
+								</div>
+							</div>
+
+							<div class="form-group" id="issue-input">
+								<input class="form-control form-control-sm" list="issues" name="issue" placeholder="issue" oninput="checkIssue(this.value)">
 								<datalist id="issues">
 									<?php 
 										$tags = get_tags(['order' => DESC]);
 										foreach ( $tags as $tag ) :
 									?>
-										<option value="<?php echo $tag->slug; ?>" onclick="alert('click')"><?php echo $tag->count; ?></option>
+										<option data-value="<?php echo $tag->slug; ?>" value="<?php echo $tag->name ?>" onclick="alert('click')"><?php echo $tag->count; ?> </option>
 									<?php 
 									endforeach 
 									?>
 								</datalist>
 							</div>
+
 						</div>
 					</div>
 					<?php
-						the_archive_description( '<p class="taxonomy-description">sadfsdaf', '</p>' );
+						the_archive_description( '<p class="taxonomy-description">', '</p>' );
 					?>
 				</div>
 			</div>
@@ -82,10 +90,20 @@ get_header(); ?>
 	var issues = tags.map(tag => tag.slug);
 
 	function checkIssue(value){
-		if(issues.includes(value)) {
-			window.location.replace( '<?php echo get_site_url(); ?>/tag/'+value );
-		}
+		
+		try {
+			var value2send = document.querySelector("#issues option[value='"+value+"']").dataset.value;
+			if(issues.includes(value2send)) {
+				window.location.replace( '<?php echo get_site_url(); ?>/tag/'+value2send );
+				document.getElementById("issue-input").style.display = "none";
+				document.getElementById("issue-loading").style.display = "block";
+			}
+		} catch (error) { }
+
 	}
+
+	
+
 </script>
 
 <?php get_footer(); ?>
